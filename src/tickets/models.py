@@ -38,6 +38,7 @@ class TicketType(models.Model):
 class Event(models.Model):
     name = models.CharField(verbose_name=_("Event Name"), max_length=255, null=True, blank=True)
     nos = models.PositiveIntegerField(verbose_name=_("Number of Seat"), null=True, blank=True)
+    event_type = models.ForeignKey(Location, null=True, blank=True, on_delete=models.PROTECT)
     start_time = models.TimeField(null=True, blank=True)
     end_time = models.TimeField(null=True, blank=True)
     ticket_type = models.ManyToManyField(TicketType, null=True, blank=True)
