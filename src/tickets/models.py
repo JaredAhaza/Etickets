@@ -118,6 +118,7 @@ class Ticket(models.Model):
     end_time = models.TimeField(null=True, blank=True)
     event_name = models.CharField(max_length=255, null=True, blank=True)
     start_time = models.CharField(max_length=255, null=True, blank=True)
+    ticket_type = models.CharField(max_length=255, null=True, blank=True)
     price = models.PositiveIntegerField(null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
