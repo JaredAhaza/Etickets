@@ -1,7 +1,13 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\etickets",
+    "\\src\\static",
+    "\\src\\static\\js",
+    "\\src\\Templates",
+    "\\src\\tickets"
   ],
-  "SelectedNode": "\\E:\\Projects\\New folder",
+  "SelectedNode": "\\src\\tickets\\admin.py",
   "PreviewInSolutionExplorer": false
 }
