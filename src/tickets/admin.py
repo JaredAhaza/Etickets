@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.models import AtendeeUser, Location, TicketType, Event, Booking, BookingDetail, BillingInfo, Payment, Ticket, Feedback, ContactNumber, ContactForm
+from tickets.models import AtendeeUser, Location, TicketType, Event, Booking, BookingDetail, BillingInfo, Payment, Ticket, Feedback, ContactNumber, ContactForm
 
 # Register your models here.
 admin.site.site_header = 'LTTP Admin Panel'
@@ -31,7 +31,7 @@ class EventAdmin(admin.ModelAdmin):
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('id', 'user', 'booking_date', 'booking_time', 'status', 'event_dt')
-    list_filter = ('status')
+   # list_filter = ('status')
     list_per_page = 10 
   
 @admin.register(BookingDetail)

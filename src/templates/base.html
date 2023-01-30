@@ -10,116 +10,62 @@
 
     <title>
         {% block title %}
-        {{ page_title|default:"Untitled Page" }}
+            {{ page_title|default:"Untitled Page" }}
         {% endblock title %}
     </title>
 
 </head>
 <body>
 
-    <!-- navbar start     -->
+<!-- navbar start     -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'home' %}"><b>E-Tickets booking System</b></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'home' %}"><b>E-Tickets booking System</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            
+            {% url 'home' as url %}
+            <li class="{% if request.path == url %}active{% endif %}">
+                <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
 
-                {% url 'home' as url %}
-                <li class="{% if request.path == url %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-                </li>
-                {% url 'verify_ticket' as url %}
-                <li class="{% if request.path == url %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'verify_ticket' %}">Verify Ticket<span class="sr-only"></a>
-                </li>
-                {% url 'feedback' as url %}
-                <li class="{% if request.path == url %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'feedback' %}">User Feedbacks</a>
-                </li>
-                {% url 'contact' as url %}
-                <li class="{% if request.path == url %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
-                </li>
-            </ul>
+        </ul>
 
-            <ul class="navbar-nav">
-
-                <!-- this is when user is logged in -->
-                {% if user.is_authenticated %}
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        Welcome, {{user.username}}
-                    </a>
-
-                    {% if user.is_superuser %}
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="admin/">Admin Panel</a>
-                    </div>
-                    {% endif %}
-
-                    {% if not user.is_superuser %}
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
-                        <a class="dropdown-item" href="{% url 'booking_history' %}">Booking History</a>
-                    </div>
-
-                    {% endif %}
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                </li>
-                {% endif %}
-
-                <!-- this is when user is not logged in -->
-                {% if not user.is_authenticated %}
-
-                {% url 'login' as url %}
-                <li class="{% if request.path == url %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
-                </li>
-                {% url 'signup' as url %}
-                <li class="{% if request.path == url %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'signup' %}">Register</a>
-                </li>
-
-                {% endif %}
-
-            </ul>
-        </div>
-    </nav>
-
-    <!-- navbar end -->
-    <!--        show success or warning message!-->
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-        {{ message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+       
+        
     </div>
-    {% endfor %}
-    <!--        show success or warning message-->
-    {% block content %}
-    {% endblock content %}
+</nav>
 
-    <!-- footer -->
-    <footer class="bg-light text-center text-lg-start mt-2">
-        <!-- Copyright -->
-        <div class="text-center p-3 bg-dark" style="color:white;">
-            Copyright &copy;
-            <script>document.write(new Date().getFullYear());</script>
-            Tickets Guru
-        </div>
-        <!-- Copyright -->
-    </footer>
+<!-- navbar end -->
+
+<!--        show success or warning message!-->
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+<!--        show success or warning message-->
+
+{% block content %}
+{% endblock content %}
+
+<!-- footer -->
+<footer class="bg-light text-center text-lg-start mt-2">
+    <!-- Copyright -->
+    <div class="text-center p-3 bg-dark" style="color:white;">
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+        Tickets Guru
+    </div>
+    <!-- Copyright -->
+</footer>
 
 </body>
 </html>

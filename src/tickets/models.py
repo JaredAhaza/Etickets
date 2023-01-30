@@ -79,7 +79,7 @@ class BookingDetail(models.Model):
     child = models.PositiveIntegerField(null=True, blank=True)
     ticket_type = models.CharField(max_length=255, null=True, blank=True)
     ppa = models.PositiveIntegerField(verbose_name=_("price Per Atendee"), null=True, blank=True)
-    total_fare = models.PositiveIntegerField(null=True, blank=True)
+    total_price = models.PositiveIntegerField(null=True, blank=True)
 
     event_dt = models.DateTimeField(blank=True, null=True)
     booking_dt = models.DateTimeField(auto_now_add=True, blank=True, null=True)
