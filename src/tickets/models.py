@@ -16,7 +16,7 @@ class AtendeeUser(AbstractUser):
 
 
 class Location(models.Model):
-    name = models.CharField(verbose_name=_("Station Name"), max_length=255, null=True, blank=True)
+    name = models.CharField(verbose_name=_("Location Name"), max_length=255, null=True, blank=True)
     place = models.CharField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
