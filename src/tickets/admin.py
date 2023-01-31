@@ -2,7 +2,7 @@ from django.contrib import admin
 from tickets.models import AtendeeUser, Location, TicketType, Event, Booking, BookingDetail, BillingInfo, Payment, Ticket, Feedback, ContactNumber, ContactForm
 
 # Register your models here.
-admin.site.site_header = 'LTTP Admin Panel'
+admin.site.site_header = 'Etickets Admin Panel'
 
 @admin.register(AtendeeUser)
 class AtendeeUserAdmin(admin.ModelAdmin):
