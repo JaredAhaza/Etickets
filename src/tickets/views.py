@@ -68,6 +68,7 @@ class Bookings(View):
                 
                 Event = request.GET.get('Event')
                 location = request.GET.get('location')
+                place = request.GET.get('place')
                 date = request.GET.get('date')
                 start_time = request.GET.get('start_time')
                 end_time = request.GET.get('end_time')
@@ -89,7 +90,7 @@ class Bookings(View):
                 ta = int(ta)
                 if available_seat >= ta:
 
-                    return render(request, 'booking.html', {'Event':Event, 'location':location, 'date':date, 'start_time':start_time, 'end_time':end_time, 'ta':ta, 'aa':aa, 'ac':ac, 'ttype':ttype, 'total_price':total_price, 'price_each':price_each})
+                    return render(request, 'booking.html', {'Event':Event, 'location':location, 'place':place, 'date':date, 'start_time':start_time, 'end_time':end_time, 'ta':ta, 'aa':aa, 'ac':ac, 'ttype':ttype, 'total_price':total_price, 'price_each':price_each})
                 else:
                     messages.warning(request, f"sorry! {available_seat} seat is not available for this Event. Try again!")
                     return redirect('home')
@@ -108,6 +109,7 @@ class Bookings(View):
         place = request.POST['place']
         event_date = request.POST['event_date']
         start_time = request.POST['start_time']
+        end_time = request.POST['end_time']
         noa = request.POST['noa']
         adult = request.POST['aa']
         child = request.POST['ac']
@@ -157,7 +159,7 @@ class Bookings(View):
         
         booking = Booking(user=user, travel_dt=str(event_date)+ ' ' + str(start_time), event_date=event_date)
 
-        booking_detail = BookingDetail(booking=booking, Event=Event, location=location, place=place, event_date=event_date, noa=noa, adult=adult, child=child, ticket_type=ticket_type, ppa=ppa, total_price=total_price, start_time=str(start_time), start_dt=str(event_date)+ ' ' + str(start_time))
+        booking_detail = BookingDetail(booking=booking, Event=Event, location=location, place=place, event_date=event_date, noa=noa, adult=adult, child=child, ticket_type=ticket_type, ppa=ppa, total_price=total_price, start_time=str(start_time), end_time=str(end_time), start_dt=str(event_date)+ ' ' + str(start_time))
         
         billing_info = BillingInfo(booking=booking, user=user, email=email, phone=phone)
         
